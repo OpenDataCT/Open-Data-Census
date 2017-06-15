@@ -68,31 +68,24 @@ function updateCards(rows, filters) {
             });
         }).map(function(row) {
           
-           row.exists = row["Exists"];
-           row.digitized = row["Digitized"];
-           row.online = row["Online"];
-           row.isPublic = row["Public"];
-           row.free = row["Free"];
-           row.machine = row["Machine readable"];
-           row.bulk = row["Available in bulk"];
-           row.openLicense = row["No restrictions"];
-           row.fresh = row["Up-to-date"];
-           row.inRepo = row["In the state repository"];
-           row.verifiable = row["Verifiable"];
-           row.complete = row["Complete"];
+             row.ado = row["DATA OFFICER"];
+           row.submit_init = row["SUBMITTED INITIAL DATASETS"];
+           row.pub_init = row["PUBLISHED INITIAL DATASETS"];
+           row.inventory = row["DATA INVENTORY"];
+           row.plan = row["DATA PLAN"];
+           row.tot_public = row["TOTAL PUBLIC DATASETS"];
+           row.tot_published = row["TOTAL DATASETS PUBLISHED"];
+           row.grade = row["Grade"];
+           row.score = row["Score"];
 
-           row.existsCaption = captions.exists[row.exists];
-           row.digitizedCaption = captions.digitized[row.digitized];
-           row.isPublicCaption = captions.isPublic[row.isPublic];
-           row.freeCaption = captions.free[row.free];
-           row.onlineCaption = captions.online[row.online];
-           row.machineCaption = captions.machine[row.machine];
-           row.bulkCaption = captions.bulk[row.bulk];
+           row.adoCaption = captions.ado[row.ado];
+           row.submit_initCaption = captions.submit_init[row.submit_init];
+           row.pub_init = captions.pub_init[row.pub_init];
+           row.inventory = captions.inventory[row.inventory];
+           row.plan = captions.plan[row.plan];
+           row.tot_public = captions.tot_public[row.tot_public];
+           row.tot_published = captions.tot_published[row.tot_published];
            row.openLicenseCaption = captions.openLicense[row.openLicense];
-           row.freshCaption = captions.fresh[row.fresh];
-           row.inRepoCaption = captions.inRepo[row.inRepo];
-           row.verifiableCaption = captions.verifiable[row.verifiable];
-           row.completeCaption = captions.complete[row.complete];
 
             var html = template(row);
             $("#cards").append(html);
