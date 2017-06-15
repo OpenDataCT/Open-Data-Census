@@ -25,7 +25,7 @@ var spinner = new Spinner(opts).spin(target);
 
  $(document).ready(function() {
      Tabletop.init({
-         key: "1OhVbryeHBsPjJ3TjjVFlfM552pDKRjiUpTAXQJe9miA",
+         key: "1bDim7xyiqWwN-mKiwx4V6wLFMUsTw0oPbdJQP-ycujA",
          callback: showInfo,
          parseNumbers: true
      });
@@ -37,7 +37,7 @@ var spinner = new Spinner(opts).spin(target);
 
  function showInfo(data, tabletop) {
 
-     allRows = _.sortBy(tabletop.sheets("Census Data").all(), "State");
+     allRows = _.sortBy(tabletop.sheets("agency status").all(), "Agency");
 
      var uri = new URI();
      var params = uri.search(true);
@@ -68,22 +68,17 @@ var spinner = new Spinner(opts).spin(target);
         })
          .map(function(row) {
           
-           row.exists = row["Exists"];
-           row.digitized = row["Digitized"];
-           row.isPublic = row["Public"];
-           row.free = row["Free"];
-           row.online = row["Online"];
-           row.machine = row["Machine readable"];
-           row.bulk = row["Available in bulk"];
-           row.openLicense = row["No restrictions"];
-           row.fresh = row["Up-to-date"];
-           row.inRepo = row["In the state repository"];
-           row.verifiable = row["Verifiable"];
-           row.complete = row["Complete"];
+           row.ado = row["DATA OFFICER"];
+           row.submit_init = row["SUBMITTED INITIAL DATASETS"];
+           row.pub_init = row["PUBLISHED INITIAL DATASETS"];
+           row.inventory = row["DATA INVENTORY"];
+           row.plan = row["DATA PLAN"];
+           row.tot_public = row["TOTAL PUBLIC DATASETS"];
+           row.tot_published = row["TOTAL DATASETS PUBLISHED"];
            row.grade = row["Grade"];
            row.score = row["Score"];
 
-           row.existsCaption = captions.exists[row.exists];
+           row.adoCaption = captions.exists[row.ado];
            row.digitizedCaption = captions.digitized[row.digitized];
            row.isPublicCaption = captions.isPublic[row.isPublic];
            row.freeCaption = captions.free[row.free];
