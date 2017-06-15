@@ -19,11 +19,7 @@
       <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script>
-      var host = "census.usopendata.org";
-      if ((host == window.location.host) && (window.location.protocol != "https:"))
-      window.location.protocol = "https";
-    </script>
+  
   </head>
 
   <body>
@@ -81,81 +77,57 @@
       </div>
     </div>
     <script id="department-template" type="text/x-handlebars-template">
-      <li><a href="#" onClick="filterByState('{{State}}')">{{State}}</a></li>
+      <li><a href="#" onClick="filterByState('{{Agency}}')">{{Agency}}</a></li>
     </script>
-    <script id="datatype-template" type="text/x-handlebars-template">
+    <!--script id="datatype-template" type="text/x-handlebars-template">
       <li><a href="#" onClick="filterByDatatype('{{[Type of Data]}}' )">{{[Type of Data]}}</a></li>
-    </script>
+    </script-->
 
     <!-- inject:templates:html -->
     <script id="card-template" type="text/x-handlebars-template"><div class="panel panel-default">
     <div class="panel-heading state-title-heading">
-        <h1 class="state-title" id="{{State}}-{{"Type of Data"}}"><a href="#{{State}}-{{"Type of Data"}}">{{State}}: {{"Type of Data"}}</a></h1>
+        <h1 class="state-title" id="{{Agency}}-{{"Type of Data"}}"><a href="#{{Agency}}-{{"Type of Data"}}">{{State}}: {{"Type of Data"}}</a></h1>
     </div>
     <div class="panel-body">
       <div class="data-icons">
         <p><strong>Data Breakdown:</strong></p>
             <ul class="availablilty icons">
-                <a data-toggle="tooltip" title data-original-title="{{existsCaption}}">
+                <a data-toggle="tooltip" title data-original-title="{{adoCaption}}">
                     <li>
                         <i class="fa fa-cube datapole {{exists}}"></i>
                     </li>
                 </a>
-                <a data-toggle="tooltip" title data-original-title="{{digitizedCaption}}">
+                <a data-toggle="tooltip" title data-original-title="{{submit_initCaption}}">
                     <li>
                         <i class="fa fa-desktop datapole {{digitized}}"></i>
                     </li>
                 </a>
-                <a data-toggle="tooltip" title data-original-title="{{isPublicCaption}}">
+                <a data-toggle="tooltip" title data-original-title="{{pub_initCaption}}">
                     <li>
                         <i class="fa fa-users datapole {{isPublic}}"></i>
                     </li>
                 </a>
-                <a data-toggle="tooltip" title data-original-title="{{freeCaption}}">
+                <a data-toggle="tooltip" title data-original-title="{{inventoryCaption}}">
                     <li>
                         <i class="fa fa-money datapole {{free}}"></i>
                     </li>
                 </a>
-                <a data-toggle="tooltip" title data-original-title="{{onlineCaption}}">
+                <a data-toggle="tooltip" title data-original-title="{{planCaption}}">
                     <li>
                         <i class="fa fa-eye datapole {{online}}"></i>
                     </li>
                 </a>
-                <a data-toggle="tooltip" title data-original-title="{{machineCaption}}">
+                <a data-toggle="tooltip" title data-original-title="{{tot_publicCaption}}">
                     <li>
                         <i class="fa fa-keyboard-o datapole {{machine}}"></i>
                     </li>
                 </a>
-                <a data-toggle="tooltip" title data-original-title="{{bulkCaption}}">
+                <a data-toggle="tooltip" title data-original-title="{{tot_publishedCaption}}">
                     <li>
                         <i class="fa fa-files-o datapole {{bulk}}"></i>
                     </li>
                 </a>
-                <a data-toggle="tooltip" title data-original-title="{{openLicenseCaption}}">
-                    <li>
-                        <i class="fa fa-share-alt datapole {{openLicense}}"></i>
-                    </li>
-                </a>
-                <a data-toggle="tooltip" title data-original-title="{{freshCaption}}">
-                    <li>
-                        <i class="fa fa-clock-o datapole {{fresh}}"></i>
-                    </li>
-                </a>
-                <a data-toggle="tooltip" title data-original-title="{{inRepoCaption}}">
-                    <li>
-                        <i class="fa fa-archive datapole {{inRepo}}"></i>
-                     </li>
-                </a>
-                <a data-toggle="tooltip" title data-original-title="{{verifiableCaption}}">
-                    <li>
-                        <i class="fa fa-check-circle datapole {{verifiable}}"></i>
-                     </li>
-                </a>
-                <a data-toggle="tooltip" title data-original-title="{{completeCaption}}">
-                    <li>
-                        <i class="fa fa-circle-o datapole {{complete}}"></i>
-                     </li>
-                </a>
+                
             </ul>
         </div>
         <p><strong>Grade:</strong> {{"Grade"}} ({{"Score"}}%)</p>
