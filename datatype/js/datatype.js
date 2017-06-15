@@ -25,7 +25,7 @@ var spinner = new Spinner(opts).spin(target);
 
 $(document).ready(function() {
     Tabletop.init({
-        key: "1OhVbryeHBsPjJ3TjjVFlfM552pDKRjiUpTAXQJe9miA",
+        key: "1bDim7xyiqWwN-mKiwx4V6wLFMUsTw0oPbdJQP-ycujA",
         callback: showInfo,
         parseNumbers: true
     });
@@ -35,7 +35,7 @@ var allRows = [];
 
 
 function showInfo(data, tabletop) {
-    allRows = _.sortBy(tabletop.sheets("Census Data").all(), "State");
+    allRows = _.sortBy(tabletop.sheets("agency status").all(), "Agency");
     filterByDatatype(pageType);
 }
 
@@ -50,14 +50,7 @@ function clearCards() {
     $("#cards").empty();
 }
 
-function buildDatatypeFilter(datatype) {
-    if (!datatype) {
-        return false;
-    }
-    return function(row) {
-        return row["Type of Data"] === datatype;
-    }
-}
+
 
 
 function updateCards(rows, filters) {
