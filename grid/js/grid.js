@@ -26,7 +26,7 @@ var spinner = new Spinner(opts).spin(target);
  $(document).ready(function() {
 
      Tabletop.init({
-         key: "1OhVbryeHBsPjJ3TjjVFlfM552pDKRjiUpTAXQJe9miA",
+         key: "1bDim7xyiqWwN-mKiwx4V6wLFMUsTw0oPbdJQP-ycujA",
          callback: showInfo,
          parseNumbers: true
      });
@@ -48,7 +48,8 @@ function mapInfo(data, tabletop) {
      spinner.stop();
 
      /* Put together data for the map. */
-     var state_abbreviations ={
+  /*removing map
+    var state_abbreviations ={
         "al": "Alabama",
         "ar": "Arkansas",
         "az": "Arizona",
@@ -146,11 +147,11 @@ function mapInfo(data, tabletop) {
             window.location.href = "/datasets.html?state=" + region;
        }
      });
-
+*/
      /* Now create the table of data. */
-     var stateTemplate = Handlebars.compile($("#state-template").html());
+     var agencyTemplate = Handlebars.compile($("#agency-template").html());
 
-     rawData = tabletop.sheets("Census Data").all()
+     rawData = tabletop.sheets("agency status").all()
      var allTypes = _.chain(rawData).map(function(row) {
              return row["Type of Data"]
          })
