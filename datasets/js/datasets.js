@@ -44,8 +44,7 @@ var spinner = new Spinner(opts).spin(target);
 
      if (params) {
          var filters = [];
-         filters.push(buildStateFilter(params["state"]));
-         filters.push(buildDatatypeFilter(params["datatype"]));
+         filters.push(buildAgencyFilter(params["Agency"]));
          updateCards(allRows, _.compact(filters));
      } else {
          updateCards(allRows);
@@ -78,18 +77,15 @@ var spinner = new Spinner(opts).spin(target);
            row.grade = row["Grade"];
            row.score = row["Score"];
 
-           row.adoCaption = captions.exists[row.ado];
-           row.digitizedCaption = captions.digitized[row.digitized];
-           row.isPublicCaption = captions.isPublic[row.isPublic];
-           row.freeCaption = captions.free[row.free];
-           row.onlineCaption = captions.online[row.online];
-           row.machineCaption = captions.machine[row.machine];
-           row.bulkCaption = captions.bulk[row.bulk];
+           row.adoCaption = captions.ado[row.ado];
+           row.submit_initCaption = captions.submit_init[row.submit_init];
+           row.pub_init = captions.pub_init[row.pub_init];
+           row.inventory = captions.inventory[row.inventory];
+           row.plan = captions.plan[row.plan];
+           row.tot_public = captions.tot_public[row.tot_public];
+           row.tot_published = captions.tot_published[row.tot_published];
            row.openLicenseCaption = captions.openLicense[row.openLicense];
-           row.freshCaption = captions.fresh[row.fresh];
-           row.inRepoCaption = captions.inRepo[row.inRepo];
-           row.verifiableCaption = captions.verifiable[row.verifiable];
-           row.completeCaption = captions.complete[row.complete];
+          
 
              var html = template(row);
             $("#cards").append(html);
@@ -100,31 +96,24 @@ var spinner = new Spinner(opts).spin(target);
 
 
 
- function buildStateFilter(state) {
-     if (!state) {
+ function buildAgencyFilter(Agency) {
+     if (!Agency) {
          return false;
      }
      return function(row) {
-         return row["State"] === state;
+         return row["Agency"] === Agency;
      }
  }
 
- function buildDatatypeFilter(datatype) {
-     if (!datatype) {
-         return false;
-     }
-     return function(row) {
-         return row["Type of Data"] === datatype;
-     }
- }
+ 
 
  function clearCards() {
      $("#cards").empty();
  }
 
- function filterByState(state) {
+ function filterByAgency(Agency) {
      clearCards();
-     updateCards(allRows, [buildStateFilter(state)]);
+     updateCards(allRows, [buildStateFilter(Agency)]);
  }
 
  function resetSearch() {
@@ -132,14 +121,4 @@ var spinner = new Spinner(opts).spin(target);
      updateCards(allRows);
  }
 
- function filterByDatatype(datatype) {
-     clearCards();
-     updateCards(allRows, [buildDatatypeFilter(datatype)]);
- }
-
- function filterByMachineReadable(machineReadable) {
-     clearCards();
-     updateCards(_.filter(allRows, function(row) {
-         return machineReadable ? row["Machine readable"] === "yes" : row["Machine readable"] === "no";
-     }))
- }
+ 
