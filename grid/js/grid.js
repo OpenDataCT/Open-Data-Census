@@ -153,29 +153,22 @@ function mapInfo(data, tabletop) {
 
      rawData = tabletop.sheets("agency status").all()
      var allTypes = _.chain(rawData).map(function(row) {
-             return row["Type of Data"]
+             return row["Agency"]
          })
          .unique()
          .value();
 
      setupDatatypes(allTypes);
 
-     /* Reverse the state abbreviations' keys and values. */
-     reversed = {};
-     for(var key in state_abbreviations){
-         reversed[state_abbreviations[key]] = key;
-     }
-     state_abbreviations = reversed;
+
 
      var rows = _.chain(rawData)
-         .groupBy("State")
-         .map(function(datasets, state) {
+         .groupBy("Agency")
+         .map(function(datasets, agency) {
              var row = {
-                 state: state,
-                 state_score: place_scores[state_abbreviations[state]] + "%",
-                 state: datasets[0]["State"],
-                 stateHref: URI().filename("datasets.html").search({
-                     "state": state
+                 Agency: Agency,
+                 AgencyHref: URI().filename("datasets.html").search({
+                     "Agency": Agency
                  }).toString(),
                  datasets: []
              }
@@ -189,8 +182,8 @@ function mapInfo(data, tabletop) {
                          grade: foundDataset["Grade"],
                          score: foundDataset["Score"],
                          datasetHref: URI().filename("datasets.html").search({
-                             "state": row["state"],
-                             "datatype": foundDataset["Type of Data"]
+                             "Agency": row["Agency"],
+
                          })
                      }
 
@@ -205,9 +198,9 @@ function mapInfo(data, tabletop) {
              });
              return row;
          })
-         .sortBy("state")
+         .sortBy("Agency")
          .each(function(row) {
-             var html = stateTemplate(row);
+             var html = AgencyTemplate(row);
              $("#states").append(html);
          })
      .value();
